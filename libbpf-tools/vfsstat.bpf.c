@@ -15,32 +15,32 @@ static __always_inline int inc_stats(int key)
 	return 0;
 }
 
-SEC("kprobe/vfs_read")
-int BPF_KPROBE(vfs_read)
+SEC("fentry/vfs_read")
+int BPF_PROG(vfs_read)
 {
 	return inc_stats(S_READ);
 }
 
-SEC("kprobe/vfs_write")
-int BPF_KPROBE(vfs_write)
+SEC("fentry/vfs_write")
+int BPF_PROG(vfs_write)
 {
 	return inc_stats(S_WRITE);
 }
 
-SEC("kprobe/vfs_fsync")
-int BPF_KPROBE(vfs_fsync)
+SEC("fentry/vfs_fsync")
+int BPF_PROG(vfs_fsync)
 {
 	return inc_stats(S_FSYNC);
 }
 
-SEC("kprobe/vfs_open")
-int BPF_KPROBE(vfs_open)
+SEC("fentry/vfs_open")
+int BPF_PROG(vfs_open)
 {
 	return inc_stats(S_OPEN);
 }
 
-SEC("kprobe/vfs_create")
-int BPF_KPROBE(vfs_create)
+SEC("fentry/vfs_create")
+int BPF_PROG(vfs_create)
 {
 	return inc_stats(S_CREATE);
 }
